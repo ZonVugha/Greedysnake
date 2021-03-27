@@ -25,8 +25,6 @@ class MyView extends View {
     private Point head = new Point();
     private Point food = new Point();
     private final int W = 100, H = 100;
-    private float  x1 ,x2;
-    private float y1 ,y2;
     private int SnakeBody = 3;
     private boolean GameOver = false;
     private Bitmap bmp;
@@ -74,27 +72,6 @@ class MyView extends View {
         invalidate();
     }
 
-//    @Override
-//    public boolean onTouchEvent(MotionEvent event) {
-//        if (event.getAction() == MotionEvent.ACTION_DOWN){
-//            x1 = event.getX();
-//            y2 = event.getY();
-//        }
-//        if (event.getAction() == MotionEvent.ACTION_MOVE){
-//            x2 = event.getX();
-//            y2 = event.getY();
-//            if (y1-y2>50){
-//                Log.d("TAG", "onTouchEvent: 上滑");
-//            }else if (y2-y1>50){
-//                Log.d("TAG", "onTouchEvent: 下滑");
-//            }else if (x1-x2>50){
-//                Log.d("TAG", "onTouchEvent: 左滑");
-//            }else if (x2-x1>50){
-//                Log.d("TAG", "onTouchEvent: 右滑");
-//            }
-//        }
-//        return false;
-//    }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
