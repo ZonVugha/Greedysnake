@@ -1,6 +1,8 @@
 package com.example.greedysnake;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -26,6 +28,8 @@ class MyView extends View {
     private Point food = new Point();
     private final int W = 100, H = 100;
     private int SnakeBody = 3;
+    private float  x1 ,x2;
+    private float y1 ,y2;
     private boolean GameOver = false;
     private Bitmap bmp;
     private ArrayList<Point> pts = new ArrayList<Point>();
@@ -104,6 +108,36 @@ class MyView extends View {
         }
         return true;
     }
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if (event.getAction() == MotionEvent.ACTION_DOWN){
+            x1 = event.getX();
+            y1 = event.getY();
+        }
+        if (event.getAction() == MotionEvent.ACTION_MOVE){
+            x2 = event.getX();
+            y2 = event.getY();
+            if (y1-y2>50){
+                Log.d("TAG", "onTouchEvent: 上滑");
+                if (dirt != DIRT.DOWN)
+                    dirt = DIRT.UP;
+            }else if (y2-y1>50){
+                Log.d("TAG", "onTouchEvent: 下滑");
+                if (dirt != DIRT.UP)
+                    dirt = DIRT.DOWN;
+            }else if (x1-x2>50){
+                Log.d("TAG", "onTouchEvent: 左滑");
+                if (dirt != DIRT.RIGHT)
+                    dirt = DIRT.LEFT;
+            }else if (x2-x1>50){
+                Log.d("TAG", "onTouchEvent: 右滑");
+                if (dirt != DIRT.LEFT)
+                    dirt = DIRT.RIGHT;
+            }
+        }
+        return true;
+    }
+
     public MyView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         head.set(200,200);
